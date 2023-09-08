@@ -16,16 +16,8 @@ int main()
 	//print concactated reversed string
 	string concat = "";
 	for( int i = v.size()-1; i >= 0; i-- ) {
-		concat = concat + v[i];
-		
-		cout << v[i] << endl;
-	}/*
-	for (int i=0;i<concat.length(); i++) {
-		if (concat[i] == '\n') {
-			concat = concat.erase(i, 1);
-			i--;
-		}
-	}*/
+		concat += v[i] + "\n";
+	}
 	cout << concat << endl;
 	// add line numbers:
 	for( int i = v.size()-1; i >= 0; i-- ) {
