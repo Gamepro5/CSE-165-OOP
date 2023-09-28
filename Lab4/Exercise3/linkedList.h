@@ -4,44 +4,55 @@
 
 struct LinkedList {
 
-	struct Link {
-		int data;
-		Link* next;
+	struct Node {
+		int* data;
+		Node* next;
 		
-		void initialize(int dat) {
+		void initialize(int* dat) {
 			data = dat;
 			next = nullptr;
 		}
 	}* head;
 
-	LinkedList(int dat) {
-		Link* newLink = new Link;
-        newLink->initialize(dat);
-        head = newLink;
+	LinkedList(int* dat) {
+		Node* newNode = new Node;
+        newNode->initialize(dat);
+        head = newNode;
 	}
 	
-    void add( LinkedList::Link* l, int n ) {
-        for (int i=0;i<n;i++) {
-            Link* newLink = new Link;
-            newLink->initialize(i);
-            l->next = newLink;
+    void add( LinkedList::Node* l, int n ) {
+        Node* currentNode;
+        Node* oldNodeNext = l->next
+        Node* newHead = new Node;
+        newHead->initialize(new int(0));
+        currentNode = newHead;
+        for (int i=1;i<n;i++) {
+            Node* newNode = new Node;
+            newNode->initialize(new int(i));
+            currentNode->next = newNode;
+            newNode->next = currentNode->next->next;
         }
+    
+        currentNode->next = oldNodeNext;
+        l->next = newHead;
     }
 
 	void print() {
-        Link* current = head;
+        
+        Node* current = head;
         while (current != nullptr) {
-            std::cout << current->data << std::endl;
+            std::cout << *(current->data) << std::endl;
             current = current->next;
         }
     }
 
     void cleanup() {
-        Link* current = head;
+        Node* current = head;
         while (current != nullptr) {
             delete current->data;
-            current = &(current->next);
+            current = current->next;
         }
+        delete current;
     }
 
 };

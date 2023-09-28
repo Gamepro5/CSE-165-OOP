@@ -1,30 +1,27 @@
 #include <iostream>
 #include "AddressBook.h"
 
-int main( int argc, const char * argv[] )
+int main( int argc, const char* argv[] )
 {
 	int n;
-
 	cin >> n;
+
+	AddressBook* myAddressBook = new AddressBook;
 
 	string name, lastname, email;
 
-	cin >> name;
-	cin >> lastname;
-	cin >> email;
-
-	AddressBook * myAddressBook = new AddressBook( name, lastname, email );
-
-	AddressBook * current;
-
-	for( int i = 1; i < n; i++ )
+	for( int i = 0; i < n; ++i )
 	{
 		cin >> name;
 		cin >> lastname;
 		cin >> email;
-		
-		current = new AddressBook( name, lastname, email );
-		myAddressBook->add( current );
+
+		Entry* e = new Entry;
+		e->setName( name );
+		e->setLastname( lastname );
+		e->setEmail( email );
+
+		myAddressBook->add( e );
 	}
 
 	myAddressBook->print();
