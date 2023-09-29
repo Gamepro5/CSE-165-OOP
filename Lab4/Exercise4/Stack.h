@@ -16,7 +16,11 @@ struct Stack {
 	void initialize() {
 		head = 0;
 	}
+
+	void deletecb (void* pt);
 	
+	void setDeleteCallback ( void (*delcb) (void* pt) );
+
 	void push(void* dat) {
 		Link* newLink = new Link;
 		newLink->initialize(dat, head);
@@ -47,6 +51,9 @@ struct Stack {
 		}
 		else {
 			std::cout << "Stack is not empty";
+			while (head != 0) {
+				deletecb(pop());
+			}
 		}
 	}
 };

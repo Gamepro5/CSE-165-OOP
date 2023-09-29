@@ -22,19 +22,19 @@ struct LinkedList {
 	
     void add( LinkedList::Node* l, int n ) {
         Node* currentNode;
-        Node* oldNodeNext = l->next
-        Node* newHead = new Node;
-        newHead->initialize(new int(0));
-        currentNode = newHead;
+        Node* oldNodeNext = l->next;
+        Node* newChainRoot = new Node;
+        newChainRoot->initialize(new int(0));
+        currentNode = newChainRoot;
         for (int i=1;i<n;i++) {
             Node* newNode = new Node;
             newNode->initialize(new int(i));
             currentNode->next = newNode;
-            newNode->next = currentNode->next->next;
+            currentNode = newNode;
         }
     
         currentNode->next = oldNodeNext;
-        l->next = newHead;
+        l->next = newChainRoot;
     }
 
 	void print() {
