@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Entry.h"
 
+using namespace std;
+
 int main( int argc, const char * argv[] )
 {
 	string name, lastname, email;

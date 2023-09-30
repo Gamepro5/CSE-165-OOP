@@ -1,5 +1,8 @@
 #include <iostream>
 #include "AddressBook.h"
+#include "Entry.h"
+
+using namespace std;
 
 int main( int argc, const char* argv[] )
 {

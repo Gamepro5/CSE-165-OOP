@@ -17,9 +17,11 @@ struct Stack {
 		head = 0;
 	}
 
-	void deletecb (void* pt);
+	void (*deletecb) (void* pt);
 	
-	void setDeleteCallback ( void (*delcb) (void* pt) );
+	void setDeleteCallback ( void (*delcb) (void* pt) ) {
+		deletecb = delcb;
+	};
 
 	void push(void* dat) {
 		Link* newLink = new Link;
