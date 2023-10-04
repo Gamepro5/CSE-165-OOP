@@ -13,14 +13,24 @@ protected:
 	int age;
 
 public:
+	static int count;
 	Animal() {
 		cout << "Creating Generic Animal" << endl;
 		name = "Generic Animal";
 		age = 0;
+		count++;
+	}
+
+	Animal(string _name, int _age) {
+		cout << "Creating Generic Animal" << endl;
+		name = _name;
+		age = _age;
+		count++;
 	}
 	
 	~Animal() {
 		cout << "Deleting Generic Animal" << endl;
+		count--;
 	}
 
 	string getName() {

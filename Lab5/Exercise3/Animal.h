@@ -18,6 +18,12 @@ public:
 		name = "Generic Animal";
 		age = 0;
 	}
+
+	Animal(string _name, int _age) {
+		cout << "Creating Generic Animal" << endl;
+		name = _name;
+		age = _age;
+	}
 	
 	~Animal() {
 		cout << "Deleting Generic Animal" << endl;
