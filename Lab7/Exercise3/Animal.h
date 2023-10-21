@@ -17,6 +17,7 @@ public:
 		name = n;
 		age = a;
 	}
+	virtual void talk() {}
 };
 
 #endif

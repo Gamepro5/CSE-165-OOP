@@ -2,6 +2,9 @@
 
 using namespace std;
 
+void initialize_pint(int* &pnum, int num) {
+	pnum = new int(num);
+}
 int main( int argc, const char * argv[] )
 {
 	int num;
@@ -12,6 +15,5 @@ int main( int argc, const char * argv[] )
 	initialize_pint(pnum, num);
 
 	cout << *pnum << endl;
-
 	return 0;
 }
