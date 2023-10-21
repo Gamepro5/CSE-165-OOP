@@ -9,25 +9,25 @@ class Rect {
     public:
         float w;
         float h;
-        const float getX() {
+        float getX() const {
             return x;
         }
         void setX(float _x) {
             x = _x;
         }
-        const float getY() {
+        float getY() const {
             return y;
         }
         void setY(float _y) {
             y = _y;
         }
-        const float getWidth() {
+        float getWidth() const {
             return w;
         }
         void setWidth(float _w) {
             w = _w;
         }
-        const float getHeight() {
+        float getHeight() const {
             return h;
         }
         void setHeight(float _h) {
@@ -59,9 +59,11 @@ class AppWindow {
             rect = new Rect();
         };
         AppWindow(float _x, float _y, float _w, float _h) {
+            rect = new Rect();
             rect = new Rect(_x, _y, _w, _h);
         };
         AppWindow(const Rect& r) {
+            rect = new Rect();
             rect->setX(r.getX());
             rect->setY(r.getX());
             rect->setWidth(r.getWidth());
@@ -77,17 +79,17 @@ class CircleWin : public AppWindow {
     protected:
         float radius;
     public:
-        CircleWin() {
+        CircleWin() : AppWindow() {
             radius = 0;
         };
-        CircleWin(float _x, float _y, float _w, float _h) {
+        CircleWin(float _x, float _y, float _w, float _h) : AppWindow(_x,_y,_w,_h) {
             if (_w >= _h) {
                 radius = _w/2;
             } else {
                 radius = _h/2;
             }
         };
-        CircleWin(const Rect& r) {
+        CircleWin(const Rect& r) : AppWindow(r) {
             if (r.getWidth() >= r.getHeight()) {
                 radius = r.getWidth()/2;
             } else {
@@ -97,9 +99,9 @@ class CircleWin : public AppWindow {
         void resize(int _w, int _h) {
             rect->resize(_w, _h);
             if (_w >= _h) {
-                radius = _w/2;
+                radius = _w;
             } else {
-                radius = _h/2;
+                radius = _h;
             };
             cout << "radius: " << radius << endl;
         };
@@ -109,16 +111,16 @@ class RectWin : public AppWindow {
     protected:
         float area;
     public:
-        RectWin() {
+        RectWin() : AppWindow() {
             area = 0;
         };
-        RectWin(float _x, float _y, float _w, float _h) {
+        RectWin(float _x, float _y, float _w, float _h) : AppWindow(_x,_y,_w,_h) {
             area = _w * _h;
         };
-        RectWin(const Rect& r) {
+        RectWin(const Rect& r) : AppWindow(r) {
             area = r.getWidth() * r.getHeight();
         };
-        void resize(float _w, float _h) {
+        void resize(int _w, int _h) {
             rect->resize(_w, _h);
             area = _w * _h;
             cout << "area: " << area << endl;
