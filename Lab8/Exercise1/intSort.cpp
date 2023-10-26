@@ -4,7 +4,7 @@
 int main(int argc, const char * argv[])
 {
 	Data myData;
-
+	
 	myData.add(4);
 	myData.add(5);
 	myData.add(2);

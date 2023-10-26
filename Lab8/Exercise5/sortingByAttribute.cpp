@@ -11,7 +11,7 @@ bool sortByName( const Participant* p1, const Participant* p2 ) {
 }
 
 bool sortByAge( const Participant* p1, const Participant* p2 ) {
-	return p1->age < p2->age;
+	return p1->age <= p2->age;
 }
 
 bool sortByScore( const Participant* p1, const Participant* p2 ) {
