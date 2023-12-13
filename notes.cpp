@@ -14,6 +14,21 @@ class Animal {
             return age;
         }
 
+        Animal() {
+
+        }
+        
+        Animal(Animal &t) { //copy constructor. called when a previously uninitialized obejct is assigned to this object
+    
+
+        }
+
+        Animal& operator=(const Animal& other) { //overloads assignment operator
+            age = other.age;
+            health = other.health;
+
+            return *this;
+        }
 
         ~Animal() { /*a destructor. called when the object is being deleted from memory.*/
             cout << "I am deleted :( " << endl;
@@ -97,8 +112,90 @@ class Cat : public Animal {
         }
 };
 
-int main( int argc, const char* argv[] )
-{   
+
+class Shape {
+    public:
+    Shape() {
+        cout << "Shape Constructor\n";
+    };
+    string shape;
+};
+
+class Color {
+    public:
+    Color() {
+        cout << "Color Constructor\n";
+    };
+    string color;
+};
+
+class ColoredSquare : public Shape, public Color { //multiple inheritance first calls constructor of shape, then color, from left 
+    public:
+    ColoredSquare() {
+        color = "blue";
+        shape = "square";
+    }
+
+    int count;
+};
+
+template <typename T> 
+class FancyArray { //template 
+    public:
+    T data[5];
+};
+
+
+class Time {
+protected:
+public:
+    int seconds;
+    int minutes;
+    int hours;
+    Time() {
+        hours = 0;
+        minutes = 0;
+        seconds = 0;
+    }
+    Time(int _hours, int _minutes, int _seconds) {
+        hours = _hours;
+        minutes = _minutes;
+        seconds = _seconds;
+    }
+    void print() {
+        std::cout << hours << " hours, " << minutes << " minutes, " << seconds << " seconds" << std::endl;
+    }
+    Time operator+(Time const& other) {
+        Time res;
+        res.seconds += seconds + other.seconds;
+        if (res.seconds >= 60) {
+            res.minutes += int(res.seconds/60);
+            res.seconds = res.seconds % 60;
+        }
+        res.minutes += minutes + other.minutes;
+        if (res.minutes >= 60) {
+            res.hours += int(res.minutes/60);
+            res.minutes = res.minutes % 60;
+        }
+        res.hours += hours + other.hours;
+        res.hours = res.hours % 24;
+        
+        return res;
+    }
+    Time operator++() { //pre increment
+        hours++;
+        hours = hours % 24;
+        return *this;
+    }
+    Time operator++(int) { //post incremenet
+        Time temp = *this;
+        ++hours;
+        return temp;
+    }
+};
+
+int main( int argc, const char* argv[] ) {
+
     Cat* mittens = new Cat();
 
     Cat* fluffy = new Cat("Fluffy");
@@ -122,5 +219,9 @@ int main( int argc, const char* argv[] )
     roofus->hit(100);
 
     delete fluffy;
+
+    ColoredSquare* temp = new ColoredSquare();
+
+    FancyArray<int>* arr = new FancyArray<int>(); // template example
 
 }

@@ -38,12 +38,12 @@ public:
         
         return res;
     }
-    Time operator++() {
+    Time operator++() { //pre increment
         hours++;
         hours = hours % 24;
         return *this;
     }
-    Time operator++(int) {
+    Time operator++(int) { //post incremenet
         Time temp = *this;
         ++hours;
         return temp;
