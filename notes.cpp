@@ -190,6 +190,7 @@ public:
     Time operator++(int) { //post incremenet
         Time temp = *this;
         ++hours;
+        hours = hours % 24;
         return temp;
     }
 };
